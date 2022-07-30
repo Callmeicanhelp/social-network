@@ -1,4 +1,6 @@
 const { Schema, model } = require('mongoose');
+const User = require('./User');
+
 
 const ReactionSchema = new Schema({
     child: new Schema({
@@ -9,11 +11,12 @@ const ReactionSchema = new Schema({
         reactionBody: {
             type: String,
             required: "Type your reaction here!",
-            maxlength: 250
+            minlength: 1,
+            maxlength: 280
         },
         username: {
-            type: Schema.Types.ObjectId,
-            ref:'User'
+            type: String,
+            required: 'User'
         },
         createdAt: {
             type: Date,

@@ -1,21 +1,11 @@
+const { ObjectId } = require('bson');
 const { Schema, model } = require('mongoose');
 
 const UserSchema = new Schema(
     {
-        firstName: {
+        username: {
         type: String,
-        trim: true,
-        required: 'Enter your First Name'
-        },
-
-        lastName: {
-        type: String,
-        trim: true,
-        required: 'Enter your Last Name'
-        },
-
-        userName: {
-        type: String,
+        unique: true,
         trim: true,
         minlength: 1,
         required: 'Enter your desired username'
@@ -34,10 +24,11 @@ const UserSchema = new Schema(
         match: [/.+@.+\..+/, 'Please enter a valid e-mail address']
         },
 
-        userCreated: {
-        type: Date,
-        default: Date.now
-        }
+        thoughts: [
+            { type: Schema.Types.ObjectId }
+        ],
+
+        friends: []
     },
     {
         toJSON: {

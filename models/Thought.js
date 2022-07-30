@@ -8,26 +8,29 @@ const ThoughtSchema = new Schema({
         trim: true,
         required: 'What is the title of your thought?'
     },
-    thought: {
+    thoughtText: {
         type: String,
         trim: true,
         minlength: 1,
-        maxlength: 250,
+        maxlength: 280,
         required: "Type your thought here!",
-    },
-    username: {
-        type: Schema.Types.ObjectId,
-        ref:'User'
     },
     createdAt: {
         type: Date,
         default: Date.now,
         timestamps: true
     },
-
+    username: {
+        type: Schema.Types.ObjectId,
+        ref:'User'
+    },
     reactions: [reactionSchema],
 });
 
-const Reaction = model('Reaction', ReactionSchema);
+UserSchema.virtual('reactionCount').get(function() {
+    return this.reactions.length(0, this.reactions.indexOf('@'));
+});
 
-module.exports = Reaction;
+const Thought = model('Thought', ThoughtSchema);
+
+module.exports = Thought;

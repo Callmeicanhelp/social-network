@@ -5,13 +5,20 @@ const UserSchema = new Schema(
         firstName: {
         type: String,
         trim: true,
-        required: 'First Name'
+        required: 'Enter your First Name'
         },
 
         lastName: {
         type: String,
         trim: true,
-        required: 'Last Name'
+        required: 'Enter your Last Name'
+        },
+
+        userName: {
+        type: String,
+        trim: true,
+        minlength: 1,
+        required: 'Enter your desired username'
         },
 
         password: {
@@ -40,8 +47,8 @@ const UserSchema = new Schema(
     }
 );
 
-UserSchema.virtual('username').get(function() {
-  return this.email.slice(0, this.email.indexOf('@'));
+UserSchema.virtual('friendCount').get(function() {
+  return this.friend.length(0, this.friends.indexOf('@'));
 });
 
 const User = model('User', UserSchema);

@@ -4,3 +4,5 @@ const thoughtRoutes = require('./thought-route');
 
 router.use('/user', userRoutes)
 router.use('/user', thoughtRoutes)
+
+moduyle.exports = router;

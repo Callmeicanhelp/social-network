@@ -1,47 +1,48 @@
 const { ObjectId } = require('bson');
 const { Schema, model } = require('mongoose');
 
-const UserSchema = new Schema(
+const userSchema = new Schema(
     {
-        username: {
-        type: String,
+        userName: {
+        type: string,
         unique: true,
         trim: true,
         minlength: 1,
-        required: 'Enter your desired username'
+        required: true
         },
-
-        // password: {
-        // type: String,
-        // trim: true,
-        // required: 'Password',
-        // validate: [({ length }) => length >= 6, 'Password should be longer.']
-        // },
 
         email: {
         type: String,
         unique: true,
-        match: [/.+@.+\..+/, 'Please enter a valid e-mail address']
+        match: [/.+@.+\..+/, 'You must supply a valid e-mail address']
         },
 
         thoughts: [
-            { type: Schema.Types.ObjectId }
+            { 
+                type: Schema.Types.ObjectId,
+                ref: "Thought"
+            }
         ],
 
-        friends: []
+        friends: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "User"
+            }
+        ]
     },
     {
         toJSON: {
-        virtuals: true
+            virtuals: true
         },
         id: false
     }
 );
 
-UserSchema.virtual('friendCount').get(function() {
+userSchema.virtual('friendCount').get(function() {
   return this.friend.length(0, this.friends.indexOf('@'));
 });
 
-const User = model('User', UserSchema);
+const User = model('User', userSchema);
 
 module.exports = User;

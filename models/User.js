@@ -11,12 +11,12 @@ const UserSchema = new Schema(
         required: 'Enter your desired username'
         },
 
-        password: {
-        type: String,
-        trim: true,
-        required: 'Password',
-        validate: [({ length }) => length >= 6, 'Password should be longer.']
-        },
+        // password: {
+        // type: String,
+        // trim: true,
+        // required: 'Password',
+        // validate: [({ length }) => length >= 6, 'Password should be longer.']
+        // },
 
         email: {
         type: String,

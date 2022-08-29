@@ -3,7 +3,7 @@ const { Thought } = require('../models');
 const thoughtController = {
 
   // GET all thoughts
-  getAllthoughts(req, res) {
+  getAllThoughts(req, res) {
     Thought.find({})
     .then(dbThoughtData => res.json(dbThoughtData))
     .catch(err => {
@@ -36,7 +36,7 @@ const thoughtController = {
   },
 
   // PUT to update thought by its ID
-  getThoughtByUser({ params }, res) {
+  updateThought({ params }, res) {
     Thought.findOne({ _id: params.id })
     .then(dbThoughtData => {
       // If user does not exist, display error message

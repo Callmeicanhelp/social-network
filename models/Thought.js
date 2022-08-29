@@ -5,26 +5,25 @@ const thoughtSchema = new Schema(
   {
     thoughtText: {
       type: String,
-        trim: true,
-        minlength: 1,
-        maxlength: 280,
-        required: "Type your thought here!",
+      minlength: 1,
+      maxlength: 280,
+      required: true,
     },
 
     createdAt: {
-        type: Date,
-        default: Date.now,
-        timestamps: true
+      type: Date,
+      default: Date.now,
+      timestamps: true
     },
 
-    userName: {
-        type: Schema.Types.ObjectId,
-        required: true
+    username: {
+      type: Schema.Types.ObjectId,
+      required: true
     },
 
     reactions: [reactionSchema],
   },
-  
+
   {
     toJSON: {
         virtuals: true

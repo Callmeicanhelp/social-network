@@ -1,16 +1,22 @@
 const router = require("express").Router();
 
-//Get all users
+const {
+  getAllThoughts,
+  getThoughtById,
+  postThought,
+  updateThought,
+  deleteThought,
+} = require("../../controllers/thought-controller");
 
-//Get single user by id
+// /api/thoughts
+router.route("/").get(getAllThoughts).post(postThought);
 
-//Post a new user
-// example data
-// {
-//   "username": "lernantino",
-//   "email": "lernantino@gmail.com"
-// };
+// /api/thoughts/:id
+router
+  .route("/:id")
+  .get(getThoughtById)
+  .put(updateThought)
+  .delete(deleteThought);
 
-//Put to update a user by id
-
-//Delete to delete a user by id
+module.exports = router;
+(module.exports = thoughtRoutes), router;

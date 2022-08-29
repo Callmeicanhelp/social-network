@@ -6,7 +6,7 @@ const {
   postThought,
   updateThought,
   deleteThought,
-} = require("../../controllers/thought-controller");
+} = require("../thought-controller");
 
 // /api/thoughts
 router.route("/").get(getAllThoughts).post(postThought);
@@ -19,4 +19,3 @@ router
   .delete(deleteThought);
 
 module.exports = router;
-(module.exports = thoughtRoutes), router;

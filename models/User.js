@@ -1,5 +1,5 @@
-const { ObjectId } = require("bson");
-const { Schema, model, Types } = require("mongoose");
+// const { ObjectId } = require("bson");
+const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema(
   {

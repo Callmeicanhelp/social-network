@@ -7,3 +7,5 @@ router.use("/api", apiRoutes);
 router.use((req, res) => {
   res.status(400).send("bad route");
 });
+
+module.exports = router;

@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const app = express();
 const PORT = process.env.PORT || 3002;
 
-const { User } = require("./models");
+// const { User } = require("./models");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -36,6 +36,10 @@ mongoose.set("debug", true);
 //   });
 // });
 
-app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}!`);
+app.use(routes);
+
+db.once("open", () => {
+  app.listen(PORT, () => {
+    console.log(`API server running on port ${PORT}!`);
+  });
 });

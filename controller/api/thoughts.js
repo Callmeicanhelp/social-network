@@ -1,4 +1,5 @@
-const { Thought } = require("../models");
+const { Thought } = require("..//../models");
+const router = require("express").Router();
 
 const thoughtController = {
   // GET all thoughts

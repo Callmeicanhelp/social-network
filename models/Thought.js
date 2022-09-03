@@ -1,5 +1,5 @@
-const { Schema, model, Types } = require("mongoose");
-// const reactionSchema = require("./Reaction");
+const { Schema, model } = require("mongoose");
+const reactionSchema = require("./Reaction");
 
 const thoughtSchema = new Schema(
   {
@@ -21,7 +21,7 @@ const thoughtSchema = new Schema(
       required: true,
     },
 
-    // reactions: [reactionSchema],
+    reaction: [reactionSchema],
   },
 
   {
@@ -32,9 +32,9 @@ const thoughtSchema = new Schema(
   }
 );
 
-// thoughtSchema.virtual("reactionCount").get(function () {
-//   return this.reactions.length(0, this.reactions.indexOf("@"));
-// });
+thoughtSchema.virtual("reactionCount").get(function () {
+  return this.reaction.length(0, this.reaction.indexOf("@"));
+});
 
 const Thought = model("Thought", thoughtSchema);
 

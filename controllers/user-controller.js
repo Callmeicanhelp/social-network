@@ -1,7 +1,7 @@
 const { User } = require("../models");
 
 const userController = {
-  getAllUser(req, res) {
+  getAllUsers(req, res) {
     User.find({})
       .then((dbUserData) => res.json(dbUserData))
       .catch((err) => {
@@ -71,4 +71,4 @@ const userController = {
   },
 };
 
-module.export = userController;
+module.exports = userController;

@@ -2,8 +2,8 @@ const { Thought } = require("../models");
 
 const thoughtController = {
   // GET all thoughts
-  getAllThoughts(req, res) {
-    Thought.find({})
+  getAllThoughts: function (req, res) {
+    Thought.find()
       .then((dbThoughtData) => res.json(dbThoughtData))
       .catch((err) => {
         console.log(err);
@@ -12,7 +12,7 @@ const thoughtController = {
   },
 
   // GET a thought by its ID
-  getThoughtById({ params }, res) {
+  getThoughtById: function ({ params }, res) {
     Thought.find({ _id: params.id })
       .then((dbThoughtData) => {
         // If no thought is found, send 404
@@ -31,14 +31,14 @@ const thoughtController = {
   },
 
   //POST a new thought
-  postThought({ body }, res) {
+  postThought: function ({ body }, res) {
     Thought.create(body)
       .then((dbThoughtData) => res.json(dbThoughtData))
       .catch((err) => res.status(400).json(err));
   },
 
   // PUT to update thought by its ID
-  updateThought({ params }, res) {
+  updateThought: function ({ params }, res) {
     Thought.findOne({ _id: params.id })
       .then((dbThoughtData) => {
         // If user does not exist, display error message
@@ -57,7 +57,7 @@ const thoughtController = {
   },
 
   //DELETE a thought
-  deleteThought({ params }, res) {
+  deleteThought: function ({ params }, res) {
     Thought.findOneAndDelete({ _id: params.id })
       .then((dbThoughtData) => {
         if (!dbThoughtData) {
@@ -72,4 +72,4 @@ const thoughtController = {
   },
 };
 
-module.export = thoughtController;
+module.exports = thoughtController;
